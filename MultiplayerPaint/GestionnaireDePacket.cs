@@ -181,6 +181,7 @@ namespace ClonesEngine
                                 {
                                     m_ID = 1;
                                     m_PlayerCount = 1;
+                                    Thread.Sleep(RNG.Next(0, 50));
                                     //GenMap();
                                 }
                                 else
@@ -215,6 +216,7 @@ namespace ClonesEngine
                                     {
                                         m_ID = 0;
                                         m_PlayerCount = 0;
+
                                         Send(TramePreGen.AskNumberOfPlayer);
                                     }
                                 }
@@ -226,7 +228,7 @@ namespace ClonesEngine
 
                         if (LastTickCheck + 5000 < Environment.TickCount)
                         {
-                            LastTickCheck = Environment.TickCount;
+                            LastTickCheck = Environment.TickCount + RNG.Next(1, 500);
                             Send(TramePreGen.AskAutoVerif(m_ID));
                         }
 
