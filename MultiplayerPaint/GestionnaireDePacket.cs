@@ -262,17 +262,6 @@ namespace ClonesEngine
             Locked = false;
         }
 
-
-
-
-        private void GetPlayerCount()
-        {
-            
-            
-            
-
-        }
-
         public void Send(byte[] data)
         {
             ConnectionUDP.Send(data);
