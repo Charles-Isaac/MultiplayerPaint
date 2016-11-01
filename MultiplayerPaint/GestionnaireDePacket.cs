@@ -83,6 +83,7 @@ namespace ClonesEngine
             ProtoBuf.Meta.RuntimeTypeModel.Default[typeof(Point)].Add(1, "X").Add(2, "Y");
             ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(PointF), true);
             ProtoBuf.Meta.RuntimeTypeModel.Default[typeof(PointF)].Add(1, "X").Add(2, "Y");
+
             for (int i = 0; i < 255; i++)
             {
                 m_PlayerList[i] = new PlayerData();
@@ -163,6 +164,7 @@ namespace ClonesEngine
                                         m_PlayerTime[m_ID] = Environment.TickCount;
 
                                         Send(TramePreGen.AnswerListeJoueur(m_PlayerCount, m_ID));
+                                        Send(TramePreGen.AskAutoVerif(ID));
                                     }
                                 }
                                 Exit();

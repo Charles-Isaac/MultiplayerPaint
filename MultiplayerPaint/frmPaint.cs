@@ -56,7 +56,7 @@ namespace MultiplayerPaint
             Invoke(new Action(() =>
             {
                 Graphics g = this.CreateGraphics();
-                for (int i = 1; i <= GP.PlayerCount; i++)////////////////////////////////////+ 1
+                for (byte i = 1; i <= GP.PlayerCount; i++)////////////////////////////////////+ 1
                 {
                     int X = 0, Y = 0;
                     X = GP.PlayerList[i].Position.X;
@@ -64,7 +64,7 @@ namespace MultiplayerPaint
 
 
 
-                    g.FillEllipse(new SolidBrush(Color.Black), X - 10, Y - 10, 20, 20);
+                    g.FillEllipse(new SolidBrush(Color.FromArgb(GP.PlayerList[i].Couleur)), X - 10, Y - 10, 20, 20);
 
                     /*rtb1.Text += a.ToString() + "x:" + c.ToString() + "y\n";
                     rtb1.SelectionStart = rtb1.Text.Length;
@@ -72,19 +72,17 @@ namespace MultiplayerPaint
 
                     if (X == 0 && Y == 0)
                     {
+                        GP.PlayerList[i].Position = new Point(1, 1);
+                        GP.Send(TramePreGen.InfoJoueur(GP.PlayerList[i], i, GP.PacketID));
                         this.Refresh();
                     }
                 }
                 g.DrawString(GP.ID.ToString(), new Font("Arial", 16), new SolidBrush(Color.Black), 10, 10);
                 if (MouseButtons == MouseButtons.Left)//mouse)
                 {
-
-
-                    Point Light = this.PointToClient(Cursor.Position);
-                    PlayerData TempPlayer = new PlayerData();
-
-                    TempPlayer.Position = Light;
-                    GP.Send(TramePreGen.InfoJoueur(TempPlayer, GP.ID, GP.PacketID));
+                    
+                    GP.PlayerList[GP.ID].Position = this.PointToClient(Cursor.Position);
+                    GP.Send(TramePreGen.InfoJoueur(GP.PlayerList[GP.ID], GP.ID, GP.PacketID));
 
 
 
@@ -110,7 +108,7 @@ namespace MultiplayerPaint
                         X = GP.PlayerList[i].Position.X;
                         Y = GP.PlayerList[i].Position.Y;
 
-                        e.Graphics.FillEllipse(new SolidBrush(Color.Black), X - 10, Y - 10, 20, 20);
+                        e.Graphics.FillEllipse(new SolidBrush(Color.FromArgb(GP.PlayerList[i].Couleur)), X - 10, Y - 10, 20, 20);
                         /*rtb1.Text += a.ToString() + "x:" + c.ToString() + "y\n";
                         rtb1.SelectionStart = rtb1.Text.Length;
                         rtb1.ScrollToCaret();*/
@@ -120,7 +118,7 @@ namespace MultiplayerPaint
                         Point Light = this.PointToClient(Cursor.Position);
                         if (GP.PlayerCount > 0)
                         {
-
+                            
                             GP.PlayerList[GP.ID].Position = Light;
                         }
 
@@ -160,12 +158,30 @@ namespace MultiplayerPaint
                 b[1] = GP.ID;
                 GP.Send(b);
             }
+            else
+            {
+                if (e.KeyData == Keys.Space)
+                {
+                    using (ColorDialog ColorPicker = new ColorDialog())
+                    {
+                        if (ColorPicker.ShowDialog() == DialogResult.OK)
+                        {
+                            GP.PlayerList[GP.ID].Couleur = ColorPicker.Color.ToArgb();
+                            GP.Send(TramePreGen.InfoJoueur(GP.PlayerList[GP.ID], GP.ID, GP.PacketID));
+                        }
+                    }
+                }
+                else
+                {
+                    GP.PlayerList[GP.ID].Position = new Point(0, 0);
+                    GP.Send(TramePreGen.InfoJoueur(GP.PlayerList[GP.ID], GP.ID, GP.PacketID));
+                }
+            }
         }
 
         private void frmPaint_KeyPress(object sender, KeyPressEventArgs e)
         {
-            GP.PlayerList[GP.ID].Position = new Point(0, 0);
-            GP.Send(TramePreGen.InfoJoueur(GP.PlayerList[GP.ID], GP.ID, GP.PacketID));
+           
         }
     }
 }
