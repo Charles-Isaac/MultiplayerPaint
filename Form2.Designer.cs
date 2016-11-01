@@ -1,4 +1,4 @@
-﻿namespace CloneEngine
+﻿namespace ClonesEngine
 {
     partial class Form2
     {

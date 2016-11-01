@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 
-namespace CloneEngine
+namespace ClonesEngine
 {
 
     public partial class Form2 : Form

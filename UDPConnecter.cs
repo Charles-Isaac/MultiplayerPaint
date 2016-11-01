@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Threading;
 
-namespace CloneEngine
+namespace ClonesEngine
 {
     class UDPConnecter
     {

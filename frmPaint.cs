@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using System.Windows.Input;
-using CloneEngine;
+using ClonesEngine;
 
 namespace MultiplayerPaint
 {

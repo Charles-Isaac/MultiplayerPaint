@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using ProtoBuf;
 
-namespace CloneEngine
+namespace ClonesEngine
 {
     [XmlType]
     class PlayerData
