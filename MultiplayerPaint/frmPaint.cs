@@ -65,6 +65,7 @@ namespace MultiplayerPaint
 
 
                     g.FillEllipse(new SolidBrush(Color.Black), X - 10, Y - 10, 20, 20);
+
                     /*rtb1.Text += a.ToString() + "x:" + c.ToString() + "y\n";
                     rtb1.SelectionStart = rtb1.Text.Length;
                     rtb1.ScrollToCaret();*/
@@ -74,7 +75,7 @@ namespace MultiplayerPaint
                         this.Refresh();
                     }
                 }
-                g.FillEllipse(new SolidBrush(Color.Black), 25 - 10, 25 - 10, 20, 20);
+                g.DrawString(GP.ID.ToString(), new Font("Arial", 16), new SolidBrush(Color.Black), 10, 10);
                 if (MouseButtons == MouseButtons.Left)//mouse)
                 {
 
