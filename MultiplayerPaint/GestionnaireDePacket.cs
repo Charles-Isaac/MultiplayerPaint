@@ -276,5 +276,13 @@ namespace ClonesEngine
         {
 
         }
+        public void UpdatePlayer(byte ID)
+        {
+            if (ID != 0)
+            {
+                m_PlayerList[ID].UpdateStats(m_PlayerTime[ID]);
+                m_PlayerTime[ID] = Environment.TickCount;
+            }
+        }
     }
 }
