@@ -29,7 +29,8 @@ namespace MultiplayerPaint
         public frmPaint()
         {
             InitializeComponent();
-
+            BackColor = Color.Lime;
+            TransparencyKey = Color.Lime;
             RNG = new Random();
             GP = new GestionnaireDePacket();
             this.DoubleBuffered = true;
